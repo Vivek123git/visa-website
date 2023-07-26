@@ -15,7 +15,7 @@
 }
 
 h1 {
-  font-family: "Inter";
+  font-family: Basier Circle,sans !important;
   font-style: normal;
   font-weight: 700;
   font-size: 2.3rem;
@@ -23,7 +23,7 @@ h1 {
 }
 
 h2 {
-  font-family: "Inter";
+  font-family: Basier Circle,sans !important;
   font-style: normal;
   font-weight: 700;
   font-size: 1.7rem;
@@ -33,7 +33,7 @@ h2 {
 }
 
 h3 {
-  font-family: "Inter";
+  font-family: Basier Circle,sans !important;
   font-style: normal;
   font-weight: 600;
   font-size: 2.3rem;
@@ -44,7 +44,7 @@ h3 {
 
 h4 {
   font-family: "Inter" !important;
-  font-style: normal !important;
+  font-style: Basier Circle,sans !important;
   font-weight: 600 !important;
   font-size: 1.25rem;
   line-height: 24px !important;
@@ -52,7 +52,7 @@ h4 {
 }
 
 p {
-  font-family: "Inter";
+  font-family: Basier Circle,sans;
   font-style: normal;
   font-weight: 400;
   font-size: 1rem;
@@ -63,15 +63,17 @@ p {
 
 .navbarPage{
   box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.10);
+  background-color: #f0f0f0;
 }
 
 .landing-container{
   padding-top: 35px;
-  background-color: #f3f5f7;
+  /* background-color: #f3f5f7; */
 }
 
 .landing-row{
-  padding: 80px;
+  /* padding: 80px; */
+  padding: 20px;
 }
 
 .benifitpage-container{
@@ -129,4 +131,21 @@ p {
 /* Additional Paragraph */
 .additional-paragraph {
   font-size: 16px;
+}
+
+
+/* visa type................................................................. */
+
+.visatype-col{
+  display: flex;
+  padding: 30px;
+}
+
+.visatype-col h4{
+  padding: 5px;
+}
+
+.visatype-card{
+  display: flex;
+  justify-content: center;
 }

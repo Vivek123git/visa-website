@@ -5,9 +5,15 @@
 
 .footer-row{
     justify-content: center;
-    padding: 20px;
+    padding: 50px;
 }
 
 .footer-col p{
 color: #fff;
+padding: 0px;
+font-family: Basier Circle,sans;
+}
+
+.footer-col h5{
+    font-family: Basier Circle,sans;
 }

@@ -17,16 +17,16 @@ const LandingPage = () => {
   return (
     <>
       <NavbarPage />
-      <Container fluid className="landing-container">
+      <Container  className="landing-container">
         <Row className="landing-row">
-          <Col md="8">
+          <Col md="12">
             <h3 className="p-0">
               Online Travel Visa Check . Find Visa information for all Countries
             </h3>
             <h5>Simplifying travel around the world.</h5>
             <Row className="pt-4">
-              <Col>
-                <h5>Where I am from</h5>
+              <Col md='4'>
+                <h4>Where I am from</h4>
                 <Form.Select aria-label="Default select example">
                   <option>Travelling from</option>
                   <option value="1">One</option>
@@ -34,21 +34,24 @@ const LandingPage = () => {
                   <option value="3">Three</option>
                 </Form.Select>
               </Col>
-              <Col>
-                <h5>Where I am going to</h5>
+              <Col md='4'>
+                <h4>Where I am going to</h4>
                 <Form.Select aria-label="Default select example">
                   <option>Travelling to</option>
                   <option value="1">One</option>
                   <option value="2">Two</option>
                   <option value="3">Three</option>
                 </Form.Select>
-                <div className="d-flex justify-content-end p-4"><Button onClick={handleVisa}>Get Started</Button></div>
+                
+              </Col>
+              <Col md='4'>
+              <div className="d-flex mt-2 p-4"><Button onClick={handleVisa}>Get Started</Button></div>
               </Col>
             </Row>
           </Col>
-          <Col md="4">
+          {/* <Col md="4">
             <img width={"400px"} src="https://d16zz69zs6o3lx.cloudfront.net/img/homepage/bg-hero-girl-en.png" />
-          </Col>
+          </Col> */}
         </Row>
       </Container>
       <CarouselSection/>
