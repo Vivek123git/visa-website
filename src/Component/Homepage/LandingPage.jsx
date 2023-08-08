@@ -25,18 +25,27 @@ const LandingPage = () => {
             </h3>
             <h5>Simplifying travel around the world.</h5>
             <Row className="pt-4">
-              <Col md='4'>
-                <h4>Where I am from</h4>
-                <Form.Select aria-label="Default select example">
+            <Col md='3'>
+                <h4>My Citizenship</h4>
+                <Form.Select className="landing-form-select" aria-label="Default select example">
                   <option>Travelling from</option>
                   <option value="1">One</option>
                   <option value="2">Two</option>
                   <option value="3">Three</option>
                 </Form.Select>
               </Col>
-              <Col md='4'>
+              <Col md='3'>
+                <h4>Where I am from</h4>
+                <Form.Select className="landing-form-select" aria-label="Default select example">
+                  <option>Travelling from</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </Form.Select>
+              </Col>
+              <Col md='3'>
                 <h4>Where I am going to</h4>
-                <Form.Select aria-label="Default select example">
+                <Form.Select className="landing-form-select" aria-label="Default select example">
                   <option>Travelling to</option>
                   <option value="1">One</option>
                   <option value="2">Two</option>
@@ -44,7 +53,7 @@ const LandingPage = () => {
                 </Form.Select>
                 
               </Col>
-              <Col md='4'>
+              <Col md='3'>
               <div className="d-flex mt-2 p-4"><Button onClick={handleVisa}>Get Started</Button></div>
               </Col>
             </Row>
