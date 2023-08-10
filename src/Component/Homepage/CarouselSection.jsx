@@ -54,7 +54,7 @@ const CarouselSection = () => {
   return (
    <> 
    <Container className='carousel-container'> 
-     <h2 className='p-0'>Dream Your Next Trip</h2>
+     <h3 className='p-0'>Dream Your Next Trip</h3>
    <Carousel
    additionalTransfrom={0}
    arrows

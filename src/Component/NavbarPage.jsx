@@ -21,7 +21,7 @@ const NavbarPage=()=> {
       {['xl'].map((expand) => (
         <Navbar key={expand} expand={expand} className="p-0" data-bs-theme="dark">
           <Container className='navbarPage' fluid>
-            <Navbar.Brand href="#"><h2>VISA </h2></Navbar.Brand>
+            <Navbar.Brand href="#"><h3>GOVISA</h3></Navbar.Brand>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}
