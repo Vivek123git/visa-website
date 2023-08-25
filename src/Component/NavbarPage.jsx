@@ -8,12 +8,18 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import LoginPopup from './AccountPage/LoginPopup'
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import { useNavigate } from 'react-router-dom';
 
 const NavbarPage=()=> {
+  const navigate = useNavigate();
   const [show,setShow] = useState(false)
 
   const handleClick=()=>{
     setShow(true)
+  }
+
+  const handlePage=()=>{
+    navigate("/")
   }
 
   return (
@@ -21,7 +27,7 @@ const NavbarPage=()=> {
       {['xl'].map((expand) => (
         <Navbar key={expand} expand={expand} className="p-0" data-bs-theme="dark">
           <Container className='navbarPage' fluid>
-            <Navbar.Brand href="#"><h3>GOVISA</h3></Navbar.Brand>
+            <Navbar.Brand ><h3 onClick={handlePage}>GOVISA</h3></Navbar.Brand>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}
@@ -35,11 +41,11 @@ const NavbarPage=()=> {
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <Nav.Link href="#action1"><h4>Home</h4></Nav.Link>
+                  <Nav.Link onClick={handlePage}><h4>Home</h4></Nav.Link>
                   <Nav.Link href="#action2"><h4>About us</h4></Nav.Link>
                   <Nav.Link href="#action2"><h4>Contact us</h4></Nav.Link>
                   <Nav.Link onClick={handleClick}><h4>Login</h4></Nav.Link>
-                  <Nav.Link ><FaUser style={{color:"#000",fontSize:"22px"}}/></Nav.Link>
+                  <Nav.Link ><FaUser style={{color:"#000",fontSize:"22px",marginTop:"7px"}}/></Nav.Link>
                   
                   
                 </Nav>

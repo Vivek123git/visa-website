@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import NavbarPage from "../NavbarPage";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import Footer from "../Footer/Footer";
@@ -9,12 +9,51 @@ import { useNavigate } from "react-router-dom";
 import OurServices from "./OurServices";
 import ContactUs from "./ContactUs";
 import AboutSection from "./AboutSection";
+import { getAllCountries } from "../AllApi/LandingApi";
 
 const LandingPage = () => {
     const navigate = useNavigate()
 
+  const [state , setState] = useState({
+    citizenship:"",
+    goingTo:""
+  })
+ const [countries , setCountries] = useState([])
+
+  const fetchCountryName=async()=>{
+   const fd = {};
+   try {
+    let res = await getAllCountries(fd)
+    if (res.data.status) {
+     setCountries(res.data.data)
+    } else {
+ 
+    }
+   } catch (error) {
+    
+   }
+  }
+
+  useEffect(()=>{
+   fetchCountryName()
+  },[])
+
+  const handleCountries=(e)=>{
+    const {name, value} = e.target
+    setState({
+      ...state,
+      [name]:value
+    })
+  }
+
+
     const handleVisa=()=>{
         // navigate('/visa-type')
+        navigate("/visa-type", {
+          state: {
+            data: state,
+          },
+        })
     }
 
   return (
@@ -30,29 +69,32 @@ const LandingPage = () => {
             <Row className="pt-4">
             <Col md='3'>
                 <h4 className="text-light">My Citizenship</h4>
-                <Form.Select className="landing-form-select" aria-label="Default select example">
+                <Form.Select className="landing-form-select" aria-label="Default select example"
+                name="citizenship"
+                 onChange={(e)=>handleCountries(e)}>
                   <option>Travelling from</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </Form.Select>
-              </Col>
-              <Col md='3'>
-                <h4 className="text-light">Where I am from</h4>
-                <Form.Select className="landing-form-select" aria-label="Default select example">
-                  <option>Travelling from</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                  {countries.length>0?
+                  countries.map((elem,ind)=>{
+                    return(
+                      <option value={elem._id}>{elem.name}</option>
+                    )
+                  })
+                  :""}
                 </Form.Select>
               </Col>
               <Col md='3'>
                 <h4 className="text-light">Where I am going to</h4>
-                <Form.Select className="landing-form-select" aria-label="Default select example">
+                <Form.Select className="landing-form-select" aria-label="Default select example"
+                name="goingTo"
+                 onChange={(e)=>handleCountries(e)}>
                   <option>Travelling to</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                  {countries.length>0?
+                  countries.map((elem,ind)=>{
+                    return(
+                      <option value={elem._id}>{elem.name}</option>
+                    )
+                  })
+                  :""}
                 </Form.Select>
                 
               </Col>
@@ -61,26 +103,13 @@ const LandingPage = () => {
               </Col>
             </Row>
           </Col>
-          {/* <Col md="4">
-            <img width={"400px"} src="https://d16zz69zs6o3lx.cloudfront.net/img/homepage/bg-hero-girl-en.png" />
-          </Col> */}
         </div>
       </Container>
       <OurServices/>
       <CarouselSection/>
-      <Container fluid className="banner-design p-0">
-        <Row>
-        <img src="https://cdn.pixabay.com/photo/2019/09/03/16/47/travel-4449816_1280.jpg"/>
-        </Row>
-      </Container >
       <BenifitsPage/>
       <AboutSection/>
       <CarouselSection/>
-      {/* <Container className="banner-design">
-        <Row>
-        <img width={"50%"} src="https://cdn.pixabay.com/photo/2018/06/07/09/01/emotions-3459666_1280.jpg"/>
-        </Row>
-      </Container> */}
       <ContactUs/>
       <TestimonialsPage/>
       <Footer/>

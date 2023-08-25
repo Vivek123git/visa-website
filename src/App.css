@@ -15,13 +15,13 @@
 }
 
 @font-face {
-  font-family: 'MyFont';
-  src: local('MyFont'), url(../assets/font-family/BasierCircle-Regular.woff) format('woff');
-  
+  font-family: "MyFont";
+  src: local("MyFont"),
+    url(../assets/font-family/BasierCircle-Regular.woff) format("woff");
 }
 
 h1 {
-  font-family: 'MyFont' ;
+  font-family: "MyFont";
   font-style: normal;
   font-weight: 700;
   font-size: 2.3rem;
@@ -29,7 +29,7 @@ h1 {
 }
 
 h2 {
-  font-family: 'MyFont' ;
+  font-family: "MyFont";
   font-style: normal;
   font-weight: 700;
   font-size: 1.7rem;
@@ -39,17 +39,17 @@ h2 {
 }
 
 h3 {
-  font-family: 'MyFont' ;
+  font-family: "MyFont";
   font-style: normal;
   font-weight: 600;
-  font-size: 2.3rem;
+  font-size: 1.5rem;
   line-height: 46px;
   color: #000;
   padding: 10px;
 }
 
 h4 {
-  font-family: 'MyFont';
+  font-family: "MyFont";
   font-style: normal;
   font-weight: 600 !important;
   font-size: 1.25rem;
@@ -59,7 +59,7 @@ h4 {
 }
 
 p {
-  font-family: 'MyFont';
+  font-family: "MyFont";
   font-style: normal;
   font-weight: 400;
   font-size: 1rem;
@@ -67,37 +67,36 @@ p {
   color: #818181;
 }
 
-
-.navbarPage{
-  box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.10);
+.navbarPage {
+  box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.1);
   background-color: #ffffff;
 }
 
-.landing-container{
+.landing-container {
   padding: 0px;
   /* background-color: #f3f5f7; */
 }
 
-.landing-row{
+.landing-row {
   /* padding: 80px; */
   /* padding: 20px; */
 }
 
-.landing-form-select{
+.landing-form-select {
   border: 1px solid #000 !important;
   height: 3.75rem;
 }
 
-.benifitpage-container{
+.benifitpage-container {
   padding: 5rem 0px;
 }
 
-.benifitpage-col h6{
+.benifitpage-col h6 {
   color: #818181;
   padding: 0px 0.6rem;
 }
 
-.carousel-container{
+.carousel-container {
   padding: 2.5rem 0px;
 }
 
@@ -113,12 +112,16 @@ p {
   position: relative;
   color: white; /* Text color */
   padding: 3.1rem; /* Adjust padding as needed */
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.25));
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0.25)
+  );
   height: 100vh;
 }
 
-.start-btn{
-    margin-top: 2.3rem;
+.start-btn {
+  margin-top: 2.3rem;
 }
 /* testimonials css.................................. */
 
@@ -164,28 +167,29 @@ p {
   font-size: 1rem;
 }
 
-
 /* visa type................................................................. */
 
-.visatype-col{
+.visatype-col {
   display: flex;
   padding: 30px;
+  
 }
 
-.visatype-col h4{
+.visatype-col h4 {
   padding: 5px;
+  color: #ce202f;
 }
 
-.visatype-card{
+.visatype-card {
   display: flex;
   justify-content: center;
+  color: #ce202f;
 }
 
-.cardBody_visatype{
+.cardBody_visatype {
   border: 1px solid black;
   cursor: pointer;
 }
-
 
 /* stepper css................ */
 
@@ -255,18 +259,17 @@ p {
   border-radius: 50% !important;
 }
 
-
 /* Our services.............................. */
 
-.services h3{
+.services h3 {
   position: relative;
-    font-weight: bold;
-    text-transform: uppercase;
-    padding: 1.25rem;
-    text-align: center;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 1.25rem;
+  text-align: center;
 }
 
-.service-row .box{
+.service-row .box {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -275,11 +278,11 @@ p {
   -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
   margin-top: 3rem;
-  -webkit-transition: all .3s;
-  transition: all .3s;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
 }
 
-.service-row .box img{
+.service-row .box img {
   width: 4.6rem;
 }
 
@@ -287,14 +290,14 @@ p {
   margin-left: 1.5rem;
 }
 
-.service-row .detail-box h5{
+.service-row .detail-box h5 {
   font-size: 1.1rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    margin-bottom: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 20px;
 }
 
-.service-row .detail-box .read-btn{
+.service-row .detail-box .read-btn {
   display: inline-block;
   padding: 8px 35px;
   background-color: #ce202f;
@@ -305,9 +308,8 @@ p {
   margin-top: 10px;
 }
 
-
 /* Contact us........................ */
-.background-contact-img{
+.background-contact-img {
   background-image: url("https://html.design/demo/viseas/images/contact-bg.jpg");
   background-size: cover;
   background-position: center;
@@ -315,57 +317,109 @@ p {
   width: 100vw;
 }
 
-.text-container-contact{
+.text-container-contact {
   position: relative;
   color: white; /* Text color */
   padding: 50px; /* Adjust padding as needed */
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.25));
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0.25)
+  );
   height: 80vh;
 }
 
-.btn .main-btn{
+.btn .main-btn {
   margin-top: 10px;
-    border: none;
-    text-transform: uppercase;
-    display: inline-block;
-    padding: 1rem 3.1rem;
-    background-color: #ce202f;
-    color: #ffffff;
-    -webkit-transition: all 0.3s;
-    transition: all 0.3s;
-    border: 1px solid transparent;
-    font-weight: bold;
+  border: none;
+  text-transform: uppercase;
+  display: inline-block;
+  padding: 1rem 3.1rem;
+  background-color: #ce202f;
+  color: #ffffff;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  border: 1px solid transparent;
+  font-weight: bold;
 }
-
 
 /* About section................................. */
 
-.about-section{
+.about-section {
   background-color: #071a52;
   padding: 5.6rem 0px;
 }
-.about-img-box img{
+.about-img-box img {
   width: 100%;
 }
-.detail-box{
+.detail-box {
   background-color: #ffffff;
-    padding: 1.5rem 1.25rem;
-    -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.05);
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.05);
-    position: relative;
-    margin-left: -45px;
-  }
+  padding: 1.5rem 1.25rem;
+  -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.05);
+  position: relative;
+  margin-left: -45px;
+}
 
-  @media screen and (max-width: 767px) {
-    .detail-box {
-      margin-left: 0px;
-    }
+@media screen and (max-width: 767px) {
+  .detail-box {
+    margin-left: 0px;
   }
+}
 
-.about-box{
+.about-box {
   display: flex;
   align-items: center;
 }
-.detail-box p{
+.detail-box p {
   margin-top: 10px;
+}
+
+.save-btn {
+  background: #ce202f;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+  border: 1px solid #ffffff;
+  border-radius: 30px;
+  width: 100%;
+  height: 50px;
+  color: #ffffff;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-top: 20px;
+}
+
+.form-label {
+  font-size: 1.3rem !important;
+  color: black !important;
+  font-weight: 500 !important;
+}
+.form-control{
+  border: 1px solid #000 !important;
+}
+.form-select-label{
+  font-size: 1.3rem !important;
+  color: black !important;
+  font-weight: 500 !important;
+}
+.form-input-radio {
+  /* height: 2.5rem !important; */
+  font-size: 1.3rem !important;
+  color: black !important;
+  font-weight: 500 !important;
+  /* border: 1px solid black !important; */
+}
+.form-input-radio .form-check-input{  
+  border: 1px solid black !important;
+}
+
+/* payment ............................... */
+.gradient-custom {
+  background: radial-gradient(50% 123.47% at 50% 50%, #00ff94 0%, #720059 100%),
+    linear-gradient(121.28deg, #669600 0%, #ff0000 100%),
+    linear-gradient(360deg, #0029ff 0%, #8fff00 100%),
+    radial-gradient(100% 164.72% at 100% 100%, #6100ff 0%, #00ff57 100%),
+    radial-gradient(100% 148.07% at 0% 0%, #fff500 0%, #51d500 100%);
+  background-blend-mode: screen, color-dodge, overlay, difference, normal;
 }

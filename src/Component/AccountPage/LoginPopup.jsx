@@ -14,11 +14,11 @@ const handleLogin=()=>{
 
   return (
     <> 
-      <Modal show={show} centered onHide={handleClose} animation={false}>
+      <Modal show={show} centered onHide={handleClose} animation={false} style={{padding:"0px 20px"}}>
         <Modal.Header closeButton>
           <Modal.Title><h3>Login</h3></Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body  style={{padding:"0px 20px"}}>
           <Form>
             <Form.Group controlId="formName" className='p-2'>
               <Form.Label className='m-0'><h4>Name</h4></Form.Label>
