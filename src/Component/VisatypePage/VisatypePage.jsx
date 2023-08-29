@@ -46,7 +46,7 @@ const VisatypePage = () => {
     });
   };
 
-  const countryName = visaDetails.map((elem,ind)=> elem)
+  const countryName = visaDetails?.map((elem,ind)=> elem)
 
   
   // console.log(countryName[0].from_country.name,"loca")
@@ -57,7 +57,7 @@ const VisatypePage = () => {
       <Container>
         <Row>
           <Col className="visatype-col">
-          {countryName.length > 0 && (
+          {countryName?.length > 0 && (
               <>
                 <h4>Home &gt;</h4>
                 <h4>{countryName[0].from_country.name} &gt;</h4>

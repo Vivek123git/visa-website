@@ -24,9 +24,9 @@ const VisaForm = () => {
   const fetchApplicationForms = async () => {
     setisLoading(true);
     const fd = {
-      from_countries: data.data.from_country._id,
-      to_countries: data.data.to_country._id,
-      visa_type: data.data.visa_type._id,
+      from_countries: data?.data?.from_country._id,
+      to_countries: data?.data?.to_country._id,
+      visa_type: data?.data?.visa_type._id,
     };
     try {
       let res = await fetchApplication(fd);
@@ -54,6 +54,9 @@ const VisaForm = () => {
     <>
     <NavbarPage/>
     <Container>
+        <div>
+            <h3>Apply now for {application[0]?.to_country.name},{application[0]?.visa_type.type} </h3>
+        </div>
 
         <Box sx={{ width: "100%" }}>
           <Stepper activeStep={step} alternativeLabel>

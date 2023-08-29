@@ -12,7 +12,7 @@ const CarouselSection = () => {
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
-      items: 1,
+      items: 1.5,
       partialVisibilityGutter: 30
     },
     tablet: {
@@ -98,8 +98,10 @@ const CarouselSection = () => {
 const WithStyles = ({ description, headline, image }) => (
   
     <div>
-    <img width={"95%"} src={image} alt={headline} />
+    <img width={"95%"} style={{borderRadius:"10px"}} src={image} alt={headline} />
+    <div className='carousel-text' >
     <h4>{headline}</h4>
+    </div>
     {/* <p>{description}</p> */}
   </div>
 );

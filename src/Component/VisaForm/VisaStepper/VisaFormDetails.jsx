@@ -9,12 +9,7 @@ const VisaFormDetails = ({ step, setStep, data }) => {
   const [isLoading, setisLoading] = useState(false);
   const [application, setApplication] = useState([]);
   const [applicationAdd, setApplicationAdd] = useState([]);
-  // const [applicationFile, setApplicationFile] = useState({
-  //   "64d9f2be1dcbca00c8058a23": null, // image
-  //    "64d9f2e21dcbca00c8058a2a": null, // Passport Copy
-  //    "64dc90c212a5cfa64a6eba9c": null, // Pan Card
-  //    "64e2f1b76c0368453839e682": null  // Supporting Document
-  // });
+  const [validated, setValidated] = useState(false);
   const [formData, setFormData] = useState([]);
 
   const fetchApplicationForms = async () => {
@@ -37,8 +32,6 @@ const VisaFormDetails = ({ step, setStep, data }) => {
   useEffect(() => {
     fetchApplicationForms();
   }, []);
-
-  console.log("formData", formData);
 
   const handleApplicationAdd = (e) => {
     const { id, value, type, files } = e.target;
@@ -82,61 +75,50 @@ const VisaFormDetails = ({ step, setStep, data }) => {
     }
   };
 
-  const handleSave = async () => {
-    //   if (pagetype === "Add") {
-    const formdata = new FormData();
-    formdata.append("fields", JSON.stringify(applicationAdd));
-    formdata.append("from_country", JSON.stringify(data.data.from_country._id));
-    formdata.append("to_country", JSON.stringify(data.data.to_country._id));
-    formdata.append("visa_type", JSON.stringify(data.data.visa_type._id));
-   
-    for (const key in formData) {
-      if (formData.hasOwnProperty(key)) {
-        const fileArray = formData[key];
-        fileArray?.forEach((file, index) => {
-          formdata.append("image", file);
-        });
-      }
-    }
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Prevent the default form submission behavior
+    e.stopPropagation();
 
-    try {
-      let res = await application_submit_api(formdata);
-      if (res.data.status) {
-        // navigate("/application");
-        // notificationHandler({ type: "success", msg: res.data.message });
-      } else {
-        // notificationHandler({ type: "success", msg: res.data.message });
-      }
-    } catch (error) {
-      //   notificationHandler({ type: "danger", msg: error.message });
-      console.log(error);
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.stopPropagation();
+      setValidated(true); // Update the validation status
+      // setStep(step + 1);
+    }else{
+       // Create the formdata and append necessary data
+       const formdata = new FormData();
+       formdata.append("fields", JSON.stringify(applicationAdd));
+       formdata.append(
+         "from_country",
+         JSON.stringify(data.data.from_country._id)
+       );
+       formdata.append("to_country", JSON.stringify(data.data.to_country._id));
+       formdata.append("visa_type", JSON.stringify(data.data.visa_type._id));
+ 
+       for (const key in formData) {
+         if (formData.hasOwnProperty(key)) {
+           const fileArray = formData[key];
+           fileArray?.forEach((file, index) => {
+             formdata.append("image", file);
+           });
+         }
+       }
+ 
+       try {
+         let res = await application_submit_api(formdata);
+         if (res.data.status) {
+           // Handle success scenario
+         } else {
+           // Handle failure scenario
+         }
+       } catch (error) {
+         // Handle error
+         console.log(error);
+       }
+       setStep(step + 1);
     }
-    //   }
-    //   if (pagetype === "Edit") {
-    //     const fd = {
-    //       id: id,
-    //       from_country: application.fromCountry,
-    //       to_country: application.toCountry,
-    //       visa_type: application.visatype,
-    //       visa_details: { ...visaDetails },
-    //       fields,
-    //     };
-    //     try {
-    //       let res = await application_update_api(fd);
-    //       if (res.data.status) {
-    //         navigate("/application");
-    //         notificationHandler({ type: "success", msg: res.data.message });
-    //       } else {
-    //         notificationHandler({ type: "success", msg: res.data.message });
-    //       }
-    //     } catch (error) {
-    //       notificationHandler({ type: "danger", msg: error.message });
-    //       console.log(error);
-    //     }
-    //   }
-
-     setStep(step + 1);
   };
+
   const handleBack = () => {
     setStep(step - 1);
   };
@@ -144,9 +126,13 @@ const VisaFormDetails = ({ step, setStep, data }) => {
   return (
     <>
       <Container style={{ padding: "40px" }}>
-        <Row className="d-flex justify-content-between">
-          <Col md={5}>
-            <Form>
+        <Form
+          noValidate
+          validated={validated}
+          onSubmit={(e) => handleSubmit(e)}
+        >
+          <Row className="d-flex justify-content-between">
+            <Col md={5}>
               {application.length > 0
                 ? application.map((elem, i) =>
                     elem.fields.map((curElem) => (
@@ -165,7 +151,11 @@ const VisaFormDetails = ({ step, setStep, data }) => {
                               id={curElem._id}
                               value={Form.value}
                               onChange={handleApplicationAdd}
+                              required
                             />
+                            <Form.Control.Feedback type="invalid">
+                              This field is required
+                            </Form.Control.Feedback>
                           </Form.Group>
                         ) : curElem.type === "select" ? (
                           <React.Fragment>
@@ -180,8 +170,9 @@ const VisaFormDetails = ({ step, setStep, data }) => {
                               onChange={handleApplicationAdd}
                               id={curElem._id}
                               aria-label="Default select example"
+                              required
                             >
-                              <option>Select one option</option>
+                              <option value="">Select one option</option>
                               {curElem.sub_fields.map((option) => (
                                 <>
                                   <option
@@ -194,6 +185,9 @@ const VisaFormDetails = ({ step, setStep, data }) => {
                                 </>
                               ))}
                             </Form.Select>
+                            <Form.Control.Feedback type="invalid">
+                              this field is required
+                            </Form.Control.Feedback>
                           </React.Fragment>
                         ) : curElem.type === "radio" ? (
                           <Form.Group>
@@ -208,6 +202,7 @@ const VisaFormDetails = ({ step, setStep, data }) => {
                                   value={option.name}
                                   label={option.name}
                                   onChange={handleApplicationAdd}
+                                  required
                                 />
                               </div>
                             ))}
@@ -217,10 +212,24 @@ const VisaFormDetails = ({ step, setStep, data }) => {
                     ))
                   )
                 : ""}
-            </Form>
-          </Col>
-          <Col md={5}>
-            <Form>
+              <Row>
+                <Col md={6} style={{ textAlign: "center" }}>
+                  <button
+                    className="save-btn"
+                    type="submit"
+                    onClick={handleBack}
+                  >
+                    Back
+                  </button>
+                </Col>
+                <Col md={6} style={{ textAlign: "center" }}>
+                  <button type="submit" className="save-btn">
+                    Save and Continue
+                  </button>
+                </Col>
+              </Row>
+            </Col>
+            <Col md={5}>
               {application.map((elem) => (
                 <React.Fragment key={elem._id}>
                   {/* Other form elements for each application */}
@@ -230,11 +239,12 @@ const VisaFormDetails = ({ step, setStep, data }) => {
                     id="Visa Duration"
                     onChange={handleApplicationAdd}
                     aria-label="Default select example"
+                    required
                   >
+                    <option value="">Select one option</option>
                     {elem.visa_details.sub_type.length > 0
                       ? elem.visa_details.sub_type.map((subElem, id) => (
                           <>
-                            <option>Select one option</option>
                             <option
                               key={id}
                               id={subElem.value}
@@ -246,10 +256,12 @@ const VisaFormDetails = ({ step, setStep, data }) => {
                         ))
                       : ""}
                   </Form.Select>
+                  <Form.Control.Feedback type="invalid">
+                    This field is required
+                  </Form.Control.Feedback>
                 </React.Fragment>
               ))}
-            </Form>
-            <Form>
+
               {application.map((elem) => (
                 <React.Fragment key={elem._id}>
                   {/* Other form elements for each application */}
@@ -259,11 +271,12 @@ const VisaFormDetails = ({ step, setStep, data }) => {
                     id="Visa Mode"
                     onChange={handleApplicationAdd}
                     aria-label="Default select example"
+                    required
                   >
+                    <option value="">Select one option</option>
                     {elem.visa_details.visa_mode.length > 0
                       ? elem.visa_details.visa_mode.map((subElem, id) => (
                           <>
-                            <option>Select one option</option>
                             <option
                               key={id}
                               id={subElem.value}
@@ -275,23 +288,16 @@ const VisaFormDetails = ({ step, setStep, data }) => {
                         ))
                       : ""}
                   </Form.Select>
+                  <Form.Control.Feedback type="invalid">
+                    This field is required
+                  </Form.Control.Feedback>
                 </React.Fragment>
               ))}
-            </Form>
-          </Col>
-          <Col md={3} style={{ textAlign: "center" }}>
-            <button className="save-btn" onClick={handleBack}>
-              Back
-            </button>
-          </Col>
-          <Col md={3} style={{ textAlign: "center" }}>
-            <button className="save-btn" onClick={handleSave}>
-              Save and Continue
-            </button>
-          </Col>
-        </Row>
-        <Loder loading={isLoading} />
+            </Col>
+          </Row>
+        </Form>
       </Container>
+      <Loder loading={isLoading} />
     </>
   );
 };

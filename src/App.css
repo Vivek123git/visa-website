@@ -100,6 +100,28 @@ p {
   padding: 2.5rem 0px;
 }
 
+.carousel-text h4{
+  position: absolute;
+    top: 0;
+    left: 0;
+    width: 95%;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    text-align: center;
+    color: #ffff;
+    font-size: 1.5rem;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
 .background-img {
   background-image: url("https://html.design/demo/viseas/images/hero-bg.jpg");
   background-size: cover;
@@ -182,13 +204,13 @@ p {
 
 .visatype-card {
   display: flex;
-  justify-content: center;
-  color: #ce202f;
+  justify-content: space-between;
 }
 
 .cardBody_visatype {
-  border: 1px solid black;
+  border: 2px solid #ce202f;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 /* stepper css................ */
